@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Result{% endblock title %}
+{% block blogactive %} active {% endblock blogactive %} 
+
+
+{% block body %}
+
+
+<div class="container my-4 ">
+    <h2>Search Results  </h2>
+    {% if allPosts|length < 1 %}
+   <p>No search results</p>
+    Your search query : <b>{{query}}</b> did not match any documents. <br>
+    Suggestions:
+    <ul>
+    <li>Try to type query according to title of blog.</li>
+    </ul>
+
+
+    {% endif %}
+    <div class="row mb-2">
+      {% for post in allPosts%}
+     <div class="col-md-6">
+       <di class="row g-0 border flex-row flex-wrap rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+         <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Article  by {{post.author}}</strong>
+           <h3 class="mb-0">{{ post.title|slice:"0:35"|safe}}</h3>
+           <div class="mb-1 text-muted">{{post.datetime}}</div>
+           <p class="card-text mb-auto">{{post.content|slice:"0:35"|safe}}</p>
+           <p class="card-text mb-auto">{{post.content|slice:"36:70"|safe}}...</p>
+           <div class="my-2">
+            <a href="/bloghere/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+        </div>
+         </div>
+         <div class="col-auto d-none d-lg-block pr-0">
+          <img src="/media/{{post.image}}" class="bd-placeholder-img" width="200" height="250" aria-label="Placeholder: Thumbnail">
+        </div>
+       </di>
+ 
+     </div>
+        {% if forloop.counter|divisibleby:2%}
+     </div>
+     <div class="row md-2">
+         {%endif%}
+     {% endfor %}
+   </div>
+     </div>
+ {% endblock %}

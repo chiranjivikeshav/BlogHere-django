@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogpost{% endblock title %}
+{%block css%}
+@media only screen and (max-width: 1062px) {
+  .container{
+    display:flex;
+    flex-flow:column;
+  }
+}{%endblock%}
+{% block body %}
+<div class="container my-3 d-inline-flex blogpost">
+  
+         <img src="/media/{{post.image}}" class="img-thumbnail" width="370" height="450" aria-label="Placeholder: Thumbnail">
+
+       <div class="blog-post ml-3">
+        <h3 class="blog-post-title">{{post.title}}</h3>
+        <p class="blog-post-meta">{{post.timeStamp}} by <a href="#">{{post.author}}</a></p>
+
+        <p>{{post.content}}</p>
+  
+        <a class="nav-link" href="/bloghere"><button class="btn btn-primary">Back</button></a>
+        <hr>
+      </div>
+      </div>
+ {% endblock %}

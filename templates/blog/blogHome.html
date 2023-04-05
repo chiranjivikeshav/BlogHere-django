@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %} 
+
+{% block css %}
+.bloggingbox{
+  width:350px;
+  heigth:auto;
+  margin:auto;
+  border-style:solid;
+  border-radius:9px;
+  padding-left:20px;
+  padding-right:20px;
+  margin-top:10px;
+}
+.form-group{
+  margin:0px;
+}
+.file{
+  display:flex;
+  flex-flow:row;
+  margin:5px;
+}
+.form-group label{
+  margin:auto;
+  font-size:bold;
+}
+
+.alertbox{
+  width:100%;
+  heigth:auto;
+  margin:auto;
+  margin-top:10px;
+  z-index:10;
+  position:absolute;
+  padding: 20px;
+  background-color:#454545;
+  color: white;
+  display:flex;
+  flex-flow:row;
+  flex-wrap:wrap;
+  border-radius:9px;
+}
+.alertbox button{
+ margin-left:100px;
+}
+
+
+{% endblock%}
+{% block body %}
+{% if user.is_authenticated %}
+<div class="bloggingbox">
+  <h3>Write Blog Here</h3>
+  <form action="/bloghere/" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="form-group">
+      <label for="authername">Name</label>
+      <input type="text" class="form-control" id="authername" name="authername"aria-describedby="name" placeholder="Auther Name">
+    </div>
+  
+    <div class="form-group">
+      <label for="title">Write Title</label>
+      <input type="text" class="form-control" id="blogtitle" name="blogtitle" aria-describedby="emailHelp" Placeholder="Blog Title">
+    </div>
+  
+    <div class="form-group">
+      <label for="slug">Link</label>
+      <input type="text" class="form-control" id="slugtext" name="slugtext" placeholder="type slug for your blog link">
+    </div>
+  
+    <div class="form-group">
+      <label for="content">Write Content</label>
+      <textarea class="form-control" name="blogcontent" id="blogcontent" cols="20" rows="5" placeholder="Start Writting"></textarea>
+    </div>
+    <div class="file">
+    <input type="file" id="myFile" name="filename">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+{% else%}
+
+   <div class="alertbox">
+    <h5>PLEASE LOG IN TO WRITE A BLOG</h5> 
+    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#loginModal">OK</button>
+    <button type="button" class="btn btn-primary ml-3" onclick="this.parentElement.style.display='none';">No THanks</button>
+  </div> 
+
+{% endif %}
+
+<div class="container my-4 ">
+    <h2>Articles </h2>
+    <div class="row mb-2">
+      {% for post in allPosts%}
+     <div class="col-md-6 " >
+       <div class="row blogpost g-0 border flex-row flex-wrap rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+         <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Article  by {{post.author}}</strong>
+           <h3 class="mb-0">{{ post.title|slice:"0:35" }}...</h3>
+           <div class="mb-1 text-muted">{{post.datetime}}</div>
+           <p class="card-text mb-auto">{{post.content|slice:"0:35"|safe}}</p>
+           <p class="card-text mb-auto">{{post.content|slice:"36:70"|safe}}...</p>
+           <div class="my-2">
+            <a href="/bloghere/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+        </div>
+         </div>
+         <div class="col-auto d-none d-lg-block pr-0">
+           <img src="/media/{{post.image}}" class="bd-placeholder-img" width="200" height="250" aria-label="Placeholder: Thumbnail">
+         </div>
+       </div>
+ 
+     </div>
+        {% if forloop.counter|divisibleby:2%}
+     </div>
+     <div class="row md-2">
+         {%endif%}
+     {% endfor %}
+   </div>
+     </div>
+ {% endblock %}

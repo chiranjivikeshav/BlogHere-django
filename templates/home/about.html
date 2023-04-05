@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogpost{% endblock title %}
+{%block css%}
+@media only screen and (max-width: 715px) {
+  .container{
+    display:flex;
+    flex-flow:column;
+  }
+}{%endblock%}
+{% block aboutactive %}active{% endblock aboutactive %}
+{% block body %}
+<div class="container my-3 d-inline-flex">
+  
+         <img src="/media/ckeshvpic.jpg" class="img-thumbnail" width="300" height="400" aria-label="Placeholder: Thumbnail">
+
+       <div class="blog-post ml-3">
+        <hr>
+        <h5>WEBSITE MADE BY</h5>
+        Chiranjvi Keshav<br>
+        <h5>FRAMEWORKS USED</h5>
+        Frontend is Done With Bootstrap,HTML,CSS,JS and Backend is Done Using Django.<br>
+        <h5>OTHER WEBSITES MADE BY ME ARE MENTIONED BELOW</h5>
+        <a href="https://chiranjivikeshav.github.io/Pclub-inductions/">https://chiranjivikeshav.github.io/Pclub-inductions/</a><br>
+        <a href="https://chiranjivikeshav.github.io/textutils/">https://chiranjivikeshav.github.io/textutils/</a>
+
+        <br>
+        these websites are just frontend and done with using React Library of JavaScript.<br>
+        <h5>Personal PortFolio Website</h5>
+        <a href="https://chiranjivikeshav.github.io/portfolio/">https://chiranjivikeshav.github.io/portfolio/</a><br>
+        <h5>PERSONAL GITHUB ACCOUNTS</h5>
+        <a href="https://github.com/chiranjivikeshav">https://github.com/chiranjivikeshav</a><br>
+    
+        <hr>
+      </div>
+      </div>
+ {% endblock %}
