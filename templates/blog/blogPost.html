@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %} Blogpost{% endblock title %}
 {%block css%}
 @media only screen and (max-width: 1062px) {
@@ -7,10 +6,44 @@
     display:flex;
     flex-flow:column;
   }
+}
+.shareandback{
+  display: flex;
+  flex-flow:row;
+  flex-wrap:wrap;
+}
+.shareandback .share i {
+  font-size: 32px;
+  margin: 10px;
+}
+.shareandback h4{
+  margin-top:25px;
+  margin-left:110px;
+}
+.facebook {
+      color: #3b5998;
+}
+.twitter {
+    color: #55acee;
+}
+.linkedin {
+    color: #0077b5;
+}
+.whatsapp {
+    color: #25D366;
+}
+.telegram {
+    color: #229ED9;
+}
+.facebook, .twitter, .linkedin, .whatsapp, .telegram {
+  opacity: 0.6;
+}
+.facebook:hover, .twitter:hover, .linkedin:hover, .whatsapp:hover, .telegram:hover {
+  opacity: 0.9;
 }{%endblock%}
 {% block body %}
 <div class="container my-3 d-inline-flex blogpost">
-  
+
          <img src="/media/{{post.image}}" class="img-thumbnail" width="370" height="450" aria-label="Placeholder: Thumbnail">
 
        <div class="blog-post ml-3">
@@ -18,9 +51,34 @@
         <p class="blog-post-meta">{{post.timeStamp}} by <a href="#">{{post.author}}</a></p>
 
         <p>{{post.content}}</p>
-  
+        <div class="shareandback">
+            <div class="back">
         <a class="nav-link" href="/bloghere"><button class="btn btn-primary">Back</button></a>
+        </div>
+        <div class="share">
+        <h4>Share Blog</h4>
+        <a class="facebook" target="blank"><i class="fa fa-facebook"></i></a>
+        <a class="twitter" target="blank"><i class="fab fa-twitter"></i></a>
+        <a class="linkedin" target="blank"><i class="fab fa-linkedin"></i></a>
+        <a class="whatsapp" target="blank"><i class="fab fa-whatsapp"></i></a>
+        <a class="telegram" target="blank"><i class="fab fa-telegram"></i></a>
+        </div>
+        </div>
         <hr>
       </div>
       </div>
+      <script>
+          const link=encodeURI(window.location.href);
+          const msg=encodeURIComponent('Hey,i found this article');
+          const fb =document.querySelector('.facebook');
+          fb.href = `https://www.facebook.com/share.php?u=${link}&text=${msg}`;
+          const twitter = document.querySelector('.twitter');
+          twitter.href = `http://twitter.com/share?&url=${link}&text=${msg}`;
+          const linkedIn = document.querySelector('.linkedin');
+          linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}&text=${msg}`;
+          const whatsapp = document.querySelector('.whatsapp');
+          whatsapp.href = `https://api.whatsapp.com/send?text=${msg}: ${link}`;
+          const telegram = document.querySelector('.telegram');
+          telegram.href = `https://telegram.me/share/url?url=${link}&text=${msg}`;
+      </script>
  {% endblock %}
