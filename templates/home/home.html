@@ -2,19 +2,77 @@
 
 {% block title %}home page{% endblock title %}
 {% block css %}
+@-webkit-keyframes float {
+    0% {
+        transform: translatey(0)
+    }
+
+    50% {
+        transform: translatey(-20px)
+    }
+
+    to {
+        transform: translatey(0)
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0)
+    }
+
+    50% {
+        transform: translatey(-20px)
+    }
+
+    to {
+        transform: translatey(0)
+    }
+}
+.welcome{
+      transform: translatey(0);
+    -webkit-animation: float 6s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+h4{
+  font-family:'Poppins',sans-serif;
+  position:relative;
+  color:#e9ecef;
+  font-size:5vw;
+  white-space : nowrap;
+}
+h4::before{
+  content:attr(data-text);
+  position:absolute;
+  height:100%;
+  color: black;
+  border-right: 1px solid black;
+  overflow:hidden;
+  animation:animate 6s linear infinite;
+}
+@keyframes animate{
+  0%{
+    width:0;
+  }
+  70%,90%{
+    width:65%;
+  }
+}
 {% endblock%}
 {% block homeactive %}active{% endblock homeactive %}
 
 {% block body %}
 
-<div class="container">
+<div class="container welcome">
     <div class="jumbotron my-3">
-      <h1 class="display-4">Welcome to BlogHere!</h1>
-      <a class="btn btn-primary btn-lg" href="/bloghere" role="button">Go to Blog</a>
+      <h4 data-text="Welcome to BlogHere!">Welcome to BlogHere!</h4>
+      <a class="btn btn-primary btn-lg" href="/bloghere" role="button">Explore Blog</a>
       </div>
     </div>
     <div class="container">
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+
                 <div class="col p-4 d-flex flex-column position-static">
                   <strong class="d-inline-block mb-2 text-primary">By chiranjivi keshav</strong>
                   <h3 class="mb-0">All of Learn HTML! is available
@@ -24,14 +82,14 @@
                     Whether you’re interested in becoming a professional web developer or you simply want to learn more about how websites work, the first thing you need to study is HTML.
                     HTML is the standard language that is used for creating webpages and web applications. Every time you access a website, a server sends an HTML file to your computer and your browser interprets and displays the information included in that file. In fact, all the information you are reading now is simply data that has been stored in an HTML file and sent to your browser.
                     Here’s the best thing about HTML – it’s a simple language to learn.
-                    Most people can learn the basics of HTML in just a few hours, and with a solid HTML foundation, you can progress to more complex languages such as CSS and JavaScript.                    
-                    This guide will provide an introduction to writing HTML, examine the basic building blocks of HTML such as tags, elements and attributes, and help you create your first HTML page by following a step-by-step tutorial. By the end of this guide, you should have the basic knowledge required to start working on your own HTML projects.                    
+                    Most people can learn the basics of HTML in just a few hours, and with a solid HTML foundation, you can progress to more complex languages such as CSS and JavaScript.
+                    This guide will provide an introduction to writing HTML, examine the basic building blocks of HTML such as tags, elements and attributes, and help you create your first HTML page by following a step-by-step tutorial. By the end of this guide, you should have the basic knowledge required to start working on your own HTML projects.
                     If you are just looking to create a website and don’t want to bother learning HTML, I suggest you use WordPress.  I have a few WordPress tutorials, including this one on starting a blog and this one on making a website.
                   </p>
                 </div>
-           <div class="col-auto d-none d-lg-block">
+                <div class="col-auto d-lg-block">
                   <img src="https://web-dev.imgix.net/image/kheDArv5csY6rvQUJDbWRscckLr1/8VqPyKxeGQWSe5tljiQz.svg">
-                </div>     
+                </div>
               </div>
               </div>
  {% endblock %}
