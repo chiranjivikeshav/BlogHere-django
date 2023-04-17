@@ -2,7 +2,7 @@
 # website link :-https://ckeshav.pythonanywhere.com/
 # Setup
 The first thing to do is to clone the repository:<br>
-$ git clone https://github.com/chiranjivikeshav/bloghere.git<br>
+$ git clone https://github.com/chiranjivikeshav/BlogHere-django.git<br>
 $ cd blog<br>
 # Create a virtual environment to install dependencies in and activate it:
 
